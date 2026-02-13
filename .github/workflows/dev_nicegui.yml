@@ -23,6 +23,11 @@ jobs:
                 username: ${{ secrets.REGISTRY_USERNAME }}
                 password: ${{ secrets.REGISTRY_PASSWORD }}
 
+
+            - run: |
+                docker build . -f Dockerfile -t waterdrop.azurecr.io/nicegui-hello-world:latest
+                docker push waterdrop.azurecr.io/nicegui-hello-world:latest
+
             # - name: Echo
             #   run: |
             #     echo "${{ secrets.ACR_URL }}" | sed 's/./& /g'
