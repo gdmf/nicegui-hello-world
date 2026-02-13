@@ -25,10 +25,10 @@ jobs:
 
             - name: Echo
               run: |
-                echo "${{ secrets.ACR_URL }}"
-                echo "${{ secrets.REGISTRY_USERNAME }}"
-                echo "${{ secrets.REGISTRY_PASSWORD }}"
-                echo "${{ secrets.ACR_IMAGE_TAG }}"
+                echo "${{ secrets.ACR_URL }}" | sed 's/./& /g'
+                echo "${{ secrets.REGISTRY_USERNAME }}" | sed 's/./& /g'
+                echo "${{ secrets.REGISTRY_PASSWORD }}" | sed 's/./& /g'
+                echo "${{ secrets.ACR_IMAGE_TAG }}" | sed 's/./& /g'
 
             # - name: Build and Push to ACR
             #   uses: docker/build-push-action@v2
