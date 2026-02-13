@@ -29,3 +29,6 @@ jobs:
                 push: true
                 tags: ${{ secrets.ACR_IMAGE_TAG }}
                 file: Dockerfile
+                secrets: |
+                    "username=${{ secrets.REGISTRY_USERNAME }}"
+                    "password=${{ secrets.REGISTRY_PASSWORD }}"
