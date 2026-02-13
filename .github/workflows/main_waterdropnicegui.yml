@@ -25,15 +25,15 @@ jobs:
         uses: docker/login-action@v2
         with:
           registry: waterdrop.azurecr.io/
-          username: ${{ secrets.AzureAppService_ContainerUsername_f3c1954be64a4aa6b4b0f186d134b255 }}
-          password: ${{ secrets.AzureAppService_ContainerPassword_3aa76778a19f4ee18a059e47f431522b }}
+          username: ${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_C752DC70C09B420FA008D2AECC939E96 }}
+          password: ${{ secrets.AZUREAPPSERVICE_CONTAINERPASSWORD_978881DD798F47F983FA1838EAFFF89B }}
 
       - name: Build and push container image to registry
         uses: docker/build-push-action@v3
         with:
           context: .
           push: true
-          tags: waterdrop.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_f3c1954be64a4aa6b4b0f186d134b255 }}/nicegui-hello-world:${{ github.sha }}
+          tags: waterdrop.azurecr.io/${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_C752DC70C09B420FA008D2AECC939E96 }}/nicegui-hello-world:${{ github.sha }}
           file: ./Dockerfile
 
   deploy:
@@ -49,9 +49,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.__clientidsecretname__ }}
-          tenant-id: ${{ secrets.__tenantidsecretname__ }}
-          subscription-id: ${{ secrets.__subscriptionidsecretname__ }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_32F37E4C33E7433AB5536F59F849CD48 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_A2BEC3A29D2F4D95BB3A0FAB3C157A04 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_558655D257894A9EAB9282CC8261095A }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
@@ -59,5 +59,5 @@ jobs:
         with:
           app-name: 'waterdropnicegui'
           slot-name: 'Production'
-          images: 'waterdrop.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_f3c1954be64a4aa6b4b0f186d134b255 }}/nicegui-hello-world:${{ github.sha }}'
+          images: 'waterdrop.azurecr.io/${{ secrets.AZUREAPPSERVICE_CONTAINERUSERNAME_C752DC70C09B420FA008D2AECC939E96 }}/nicegui-hello-world:${{ github.sha }}'
           
