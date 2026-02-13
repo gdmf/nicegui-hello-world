@@ -2,7 +2,7 @@ from nicegui import ui
 
 @ui.page('/')
 def index():
-    ui.label('Hello NiceGUI World (now using CI/CD)!')
+    ui.label('Hello NiceGUI World (now using CI/CD...)!')
     ui.button('Click me!', on_click=lambda: ui.notify('I have been clicked!'))
 
 if __name__ in {"__main__", "__mp_main__"}:
