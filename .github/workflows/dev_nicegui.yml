@@ -23,12 +23,19 @@ jobs:
                 username: ${{ secrets.REGISTRY_USERNAME }}
                 password: ${{ secrets.REGISTRY_PASSWORD }}
 
-            - name: Build and Push to ACR
-              uses: docker/build-push-action@v2
-              with:
-                push: true
-                tags: ${{ secrets.ACR_IMAGE_TAG }}
-                file: Dockerfile
-                secrets: |
-                    "username=${{ secrets.REGISTRY_USERNAME }}"
-                    "password=${{ secrets.REGISTRY_PASSWORD }}"
+            - name: Echo
+              run: |
+                echo "${{ secrets.ACR_URL }}""
+                echo "${{ secrets.REGISTRY_USERNAME }}"
+                echo "${{ secrets.REGISTRY_PASSWORD }}"
+                echo "${{ secrets.ACR_IMAGE_TAG }}"
+
+            # - name: Build and Push to ACR
+            #   uses: docker/build-push-action@v2
+            #   with:
+            #     push: true
+            #     tags: ${{ secrets.ACR_IMAGE_TAG }}
+            #     file: Dockerfile
+            #     secrets: |
+            #         "username=${{ secrets.REGISTRY_USERNAME }}"
+            #         "password=${{ secrets.REGISTRY_PASSWORD }}"
